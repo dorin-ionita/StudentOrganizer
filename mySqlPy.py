@@ -2,35 +2,6 @@
 
 import MySQLdb
 
-# baza de date: studentorganizer
-# localhost, root, ionita
-# baza de date contine:
-# 1.tabela tasks
-# 	contine taskurile neschedulite
-# 	0. ID int
-# 	1. NAME char
-# 	2. PRIORITY int
-# 	3. TIME_REQ float
-# 	4. DEADLINE datetime.date
-# 2.tabela timetable
-# 	contine orarul si taskurile repetitive
-# 	(de genul somn)
-# 	0. ID int
-# 	1. DAY char
-# 	2. START_HOUR ?
-# 	3. END_HOUR ?
-# 	4. NAME char
-# 	5. PARITY int
-# 3.tabela schedule
-# 	contine programul asa cum a fost facut de programul
-# 	de aici voi pune in GUI
-# 	0. ID int
-# 	1. DATE datetime.date
-# 	2. START_HOUR Time/datetime.timedelta
-# 	3. END_HOUR Time/datetime.timedelta
-# 	4. NAME char
-# 	5. POSTPON int
-
 def getTasksFromDB():
 	#Aceasta functie imi returneaza taskurile
 	#din baza de date
