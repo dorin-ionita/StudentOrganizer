@@ -21,17 +21,23 @@ def prevDay():
 # daca este schedulat ceva.
 
 def getAddTaskEntries(line1_entry,line2_entry,
-	line3_entry,line4_entry):
+	line3_entry,line4_entry,add_task_window):
+	print line1_entry.get()
 	task_name=line1_entry.get()
 	priority=line2_entry.get()
 	time_req=line3_entry.get()
 	deadline=line4_entry.get()
-	print [task_name, priority, time_req, deadline]
+	# print [task_name, priority, time_req, deadline]
+	confirmation_msg = tkMessageBox.showinfo("Info Received",
+		"The information you introduced about the task was received.")
+	add_task_window.destroy()
 	return [task_name, priority, time_req, deadline]
 #functia primeste Entrierile din addTask la apasarea
 #butonului ok si imi intoarce ce stringuri au fost
 #introduse prin ele, sub forma unei liste
 #numele elementelor din lista sunt sugestive
+#la final apare un mesaj care explica ca s-au primit
+#informatile iar fereastra de introducere se distruge
 
 def addTask():
 	# tkMessageBox.showinfo("Pop box","Ceva ceva tot e")
@@ -71,8 +77,9 @@ def addTask():
 	line4_entry.pack(side=RIGHT)
 
 	ok_button = Tkinter.Button(horizontal_frame_6,text="OK",
-		command=getAddTaskEntries(line1_entry,line2_entry,
-			line3_entry,line4_entry))
+		command = lambda: getAddTaskEntries(line1_entry,
+			line2_entry,line3_entry,line4_entry,add_task_window))
+	# it works! retine faza cu lambda
 	ok_button.pack()
 
 	horizontal_frame_6.pack(side=BOTTOM)
@@ -93,15 +100,133 @@ def addTask():
 # Functia returneaza in ordine stringurile
 # name, priority, time_req, deadline
 
+def getRemoveTaskEntries(line1_entry,line2_entry,
+	line3_entry,remove_task_window):
+	task_name=line1_entry.get()
+	date=line2_entry.get()
+	hour=line3_entry.get()
+	confirmation_msg = tkMessageBox.showinfo("Info Received",
+		"The information you introduced about the task was received.")
+	remove_task_window.destroy()
+	return [task_name, date, hour]
+#functia primeste Entrierile din removeTask la apasarea
+#butonului ok si imi intoarce ce stringuri au fost
+#introduse prin ele, sub forma unei liste
+#numele elementelor din lista sunt sugestive
+#la final apare un mesaj care explica ca s-au primit
+#informatile iar fereastra de introducere se distruge
+
 def removeTask():
+	remove_task_window=Tkinter.Tk()
+	remove_task_window.geometry("300x125+50+50")
+	remove_task_window.title("Remove task")
+
+	vertical_frame=Tkinter.Frame(remove_task_window)
+	horizontal_frame_1=Tkinter.Frame(vertical_frame)
+	horizontal_frame_2=Tkinter.Frame(vertical_frame)
+	horizontal_frame_3=Tkinter.Frame(vertical_frame)
+	horizontal_frame_4=Tkinter.Frame(vertical_frame)
+	horizontal_frame_5=Tkinter.Frame(vertical_frame)
+
+	instructions=Tkinter.Message(horizontal_frame_1,
+		text="""Introduce the task you want to remove""",
+		width=500)
+	instructions.pack()
+
+	line1_text=Tkinter.Label(horizontal_frame_2,text="Task name")
+	line1_text.pack(side=LEFT,fill="x")
+	line1_entry=Tkinter.Entry(horizontal_frame_2)
+	line1_entry.pack(side=RIGHT)
+	line2_text=Tkinter.Label(horizontal_frame_3,text="Date (Optional)")
+	line2_entry=Tkinter.Entry(horizontal_frame_3)
+	line2_text.pack(side=LEFT,fill="x")
+	line2_entry.pack(side=RIGHT)
+	line3_text=Tkinter.Label(horizontal_frame_4,text="Hour (Optional)")
+	line3_entry=Tkinter.Entry(horizontal_frame_4)
+	line3_text.pack(side=LEFT,fill="x")
+	line3_entry.pack(side=RIGHT)
+
+	ok_button = Tkinter.Button(horizontal_frame_5,text="OK",
+		command = lambda: getRemoveTaskEntries(line1_entry,
+		line2_entry,line3_entry,remove_task_window))
+	ok_button.pack()
+
+	horizontal_frame_5.pack(side=BOTTOM)
+	horizontal_frame_4.pack(side=BOTTOM)
+	horizontal_frame_3.pack(side=BOTTOM)
+	horizontal_frame_2.pack(side=BOTTOM)
+	horizontal_frame_1.pack(side=BOTTOM)
+
+	vertical_frame.pack()
+
+	remove_task_window.mainloop()
 	return 0
 #imi va scoate un task din schedule (dupa nume)
-# eventual si dupa data pentru chestii repetitive
+# eventual si dupa data/ora pentru chestii repetitive
+
+def getPostponeTaskEntries(line1_entry,line2_entry,
+	line3_entry,postpone_task_window):
+	task_name=line1_entry.get()
+	date=line2_entry.get()
+	hour=line3_entry.get()
+	confirmation_msg = tkMessageBox.showinfo("Info Received",
+		"The information you introduced about the task was received.")
+	postpone_task_window.destroy()
+	return [task_name, date, hour]
+#functia primeste Entrierile din postponeTask la apasarea
+#butonului ok si imi intoarce ce stringuri au fost
+#introduse prin ele, sub forma unei liste
+#numele elementelor din lista sunt sugestive
+#la final apare un mesaj care explica ca s-au primit
+#informatile iar fereastra de introducere se distruge
 
 def postponeTask():
+	postpone_task_window=Tkinter.Tk()
+	postpone_task_window.geometry("300x125+50+50")
+	postpone_task_window.title("Postpone task")
+
+	vertical_frame=Tkinter.Frame(postpone_task_window)
+	horizontal_frame_1=Tkinter.Frame(vertical_frame)
+	horizontal_frame_2=Tkinter.Frame(vertical_frame)
+	horizontal_frame_3=Tkinter.Frame(vertical_frame)
+	horizontal_frame_4=Tkinter.Frame(vertical_frame)
+	horizontal_frame_5=Tkinter.Frame(vertical_frame)
+
+	instructions=Tkinter.Message(horizontal_frame_1,
+		text="""Introduce the task you want to postpone""",
+		width=500)
+	instructions.pack()
+
+	line1_text=Tkinter.Label(horizontal_frame_2,text="Task name")
+	line1_text.pack(side=LEFT,fill="x")
+	line1_entry=Tkinter.Entry(horizontal_frame_2)
+	line1_entry.pack(side=RIGHT)
+	line2_text=Tkinter.Label(horizontal_frame_3,text="Date (Optional)")
+	line2_entry=Tkinter.Entry(horizontal_frame_3)
+	line2_text.pack(side=LEFT,fill="x")
+	line2_entry.pack(side=RIGHT)
+	line3_text=Tkinter.Label(horizontal_frame_4,text="Hour (Optional)")
+	line3_entry=Tkinter.Entry(horizontal_frame_4)
+	line3_text.pack(side=LEFT,fill="x")
+	line3_entry.pack(side=RIGHT)
+
+	ok_button = Tkinter.Button(horizontal_frame_5,text="OK",
+		command = lambda: getPostponeTaskEntries(line1_entry,
+		line2_entry,line3_entry,postpone_task_window))
+	ok_button.pack()
+
+	horizontal_frame_5.pack(side=BOTTOM)
+	horizontal_frame_4.pack(side=BOTTOM)
+	horizontal_frame_3.pack(side=BOTTOM)
+	horizontal_frame_2.pack(side=BOTTOM)
+	horizontal_frame_1.pack(side=BOTTOM)
+
+	vertical_frame.pack()
+
+	postpone_task_window.mainloop()
 	return 0
 #imi postponeaza un task dupa nume
-#daca nu se introduce data de postpone se face automat
+#eventual si dupa data si ora
 
 def modifyTask():
 	return 0
@@ -129,7 +254,7 @@ top.geometry("640x480+1+1")
 top.title("Time and money management software")
 but1.pack(side=LEFT)
 but2.pack(side=RIGHT)
-but3.pack(side=LEFT);
+but3.pack(side=LEFT)
 but4.pack(side=LEFT)
 but5.pack(side=RIGHT)
 but6.pack(side=RIGHT)
