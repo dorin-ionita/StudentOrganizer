@@ -1,13 +1,13 @@
 #!/usr/bin/python
 
 import time
-import mySqlPy
+import mySqlDBInterface
 from datetime import timedelta, date
 
 def getFromDB(tasks,timetable,schedule):
-	tasks = mySqlPy.getTasksFromDB()
-	timetable = mySqlPy.getTimetableFromDB()
-	schedule = mySqlPy.getScheduleFromDB()
+	tasks = mySqlDBInterface.getTasksFromDB()
+	timetable = mySqlDBInterface.getTimetableFromDB()
+	schedule = mySqlDBInterface.getScheduleFromDB()
 	# print tasks[0][0] # de exemplu aceasta comanda imi afiseaza
 	# 				  # prima celula din tabel
 	# Sunt puse sub forma unei matrice.
@@ -71,13 +71,13 @@ def scheduleTimetable(timetable,schedule):
 						task[2],task[3],task[4],0)
 					getFromDB(task,timetable,schedule)
 					#adaugat ca nepostponable
-			# mySqlPy.addScheduleInDB(len(timetable)+1,datetime,
+			# mySqlDBInterface.addScheduleInDB(len(timetable)+1,datetime,
 			# 	)
 		# else:
 		# 	for date in dateRange(current_day,"2017-12-31"):
 		# 		for hour in timeRange("00.00","23.00"):
 		# 			if timeAndDateBusy(date,hour,schedule)!=0 :
-		# 				mySqlPy.addScheduleInDB(len(timetable),datetime,
+		# 				mySqlDBInterface.addScheduleInDB(len(timetable),datetime,
 		# 					hour,task[])
 # presupunand ca tabela schedule este goala
 # (adica nu se vor face alte verificari)
@@ -94,7 +94,7 @@ def scheduleTasks (tasks,schedule):
 			for date in dateRange(current_day,"2017-12-31"):
 				for hour in timeRange("11.00","23.00"):
 					if timeAndDateBusy(date,hour,schedule)==0 :
-						mySqlPy.addScheduleInDB(len(timetable)+1,date,
+						mySqlDBInterface.addScheduleInDB(len(timetable)+1,date,
 							task[2],task[3],task[4],0)
 						getFromDB(task,timetable,schedule)
 # daca taskul nu exista in schedul este
