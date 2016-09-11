@@ -223,12 +223,114 @@ def postponeTask():
 
 	vertical_frame.pack()
 
+	#TO DO: adauga daca a fost cu succes sau nu postponarea
 	postpone_task_window.mainloop()
 	return 0
 #imi postponeaza un task dupa nume
 #eventual si dupa data si ora
 
+def getModifyTaskEntries(line1_entry_left,
+		line2_entry_left,line3_entry_left,line1_entry_right,
+		line2_entry_right,line3_entry_right,line4_entry_right,
+		modify_task_window):
+	task_to_modify_name=line1_entry_left.get()
+	task_to_modify_date=line2_entry_left.get()
+	task_to_modify_hour=line3_entry_left.get()
+	modified_name=line1_entry_right.get()
+	modified_priority=line2_entry_right.get()
+	modified_time_req=line3_entry_right.get()
+	modified_deadline=line4_entry_right.get()
+	confirmation_msg=tkMessageBox.showinfo("Info Received",
+		"The information you introduced about the task was received.")
+	modify_task_window.destroy()
+	return [task_to_modify_name, task_to_modify_date, task_to_modify_hour,
+			modified_name, modified_priority, modified_time_req,
+			modified_deadline]
+
 def modifyTask():
+	modify_task_window=Tkinter.Tk()
+	modify_task_window.geometry("600x125+50+50")
+	modify_task_window.title("Postpone task")
+
+	global_frame=Tkinter.Frame(modify_task_window)
+	vertical_frame_left=Tkinter.Frame(global_frame)
+	horizontal_frame_1_left=Tkinter.Frame(vertical_frame_left)
+	horizontal_frame_2_left=Tkinter.Frame(vertical_frame_left)
+	horizontal_frame_3_left=Tkinter.Frame(vertical_frame_left)
+	horizontal_frame_4_left=Tkinter.Frame(vertical_frame_left)
+	horizontal_frame_5_left=Tkinter.Frame(vertical_frame_left)
+	vertical_frame_right=Tkinter.Frame(global_frame)
+	horizontal_frame_1_right=Tkinter.Frame(vertical_frame_right)
+	horizontal_frame_2_right=Tkinter.Frame(vertical_frame_right)
+	horizontal_frame_3_right=Tkinter.Frame(vertical_frame_right)
+	horizontal_frame_4_right=Tkinter.Frame(vertical_frame_right)
+	horizontal_frame_5_right=Tkinter.Frame(vertical_frame_right)
+	horizontal_frame_6_right=Tkinter.Frame(vertical_frame_right)
+
+	instructions_left=Tkinter.Message(horizontal_frame_1_left,
+		text="""Introduce the task you want to modify""",
+		width=500)
+	instructions_left.pack()
+	line1_text_left=Tkinter.Label(horizontal_frame_2_left,text="Task name")
+	line1_text_left.pack(side=LEFT,fill="x")
+	line1_entry_left=Tkinter.Entry(horizontal_frame_2_left)
+	line1_entry_left.pack(side=RIGHT)
+	line2_text_left=Tkinter.Label(horizontal_frame_3_left,text="Date (Optional)")
+	line2_entry_left=Tkinter.Entry(horizontal_frame_3_left)
+	line2_text_left.pack(side=LEFT,fill="x")
+	line2_entry_left.pack(side=RIGHT)
+	line3_text_left=Tkinter.Label(horizontal_frame_4_left,text="Hour (Optional)")
+	line3_entry_left=Tkinter.Entry(horizontal_frame_4_left)
+	line3_text_left.pack(side=LEFT,fill="x")
+	line3_entry_left.pack(side=RIGHT)
+
+	instructions_right=Tkinter.Message(horizontal_frame_1_right,
+		text="""Introduce the new info about the task.""",
+		width=500)
+	instructions_right.pack()
+	line1_text_right=Tkinter.Label(horizontal_frame_2_right,text="Task name")
+	line1_text_right.pack(side=LEFT,fill="x")
+	line1_entry_right=Tkinter.Entry(horizontal_frame_2_right)
+	line1_entry_right.pack(side=RIGHT)
+	line2_text_right=Tkinter.Label(horizontal_frame_3_right,text="Priority")
+	line2_entry_right=Tkinter.Entry(horizontal_frame_3_right)
+	line2_text_right.pack(side=LEFT,fill="x")
+	line2_entry_right.pack(side=RIGHT)
+	line3_text_right=Tkinter.Label(horizontal_frame_4_right,
+		text="Time required(hours)")
+	line3_entry_right=Tkinter.Entry(horizontal_frame_4_right)
+	line3_text_right.pack(side=LEFT,fill="x")
+	line3_entry_right.pack(side=RIGHT)
+	line4_text_right=Tkinter.Label(horizontal_frame_5_right,text="Deadline")
+	line4_entry_right=Tkinter.Entry(horizontal_frame_5_right)
+	line4_text_right.pack(side=LEFT,fill="x")
+	line4_entry_right.pack(side=RIGHT)
+
+	ok_button = Tkinter.Button(horizontal_frame_5_left,text="OK",
+		command = lambda: getModifyTaskEntries(line1_entry_left,
+		line2_entry_left,line3_entry_left,line1_entry_right,
+		line2_entry_right,line3_entry_right,line4_entry_right,
+		modify_task_window))
+	ok_button.pack()
+
+	horizontal_frame_5_left.pack(side=BOTTOM)
+	horizontal_frame_4_left.pack(side=BOTTOM)
+	horizontal_frame_3_left.pack(side=BOTTOM)
+	horizontal_frame_2_left.pack(side=BOTTOM)
+	horizontal_frame_1_left.pack(side=BOTTOM)
+	horizontal_frame_6_right.pack(side=BOTTOM)
+	horizontal_frame_5_right.pack(side=BOTTOM)
+	horizontal_frame_4_right.pack(side=BOTTOM)
+	horizontal_frame_3_right.pack(side=BOTTOM)
+	horizontal_frame_2_right.pack(side=BOTTOM)
+	horizontal_frame_1_right.pack(side=BOTTOM)
+
+	vertical_frame_right.pack(side=RIGHT)
+	vertical_frame_left.pack(side=LEFT)
+	global_frame.pack()
+
+	#TO DO: adauga daca a fost cu succes sau nu postponarea
+	modify_task_window.mainloop()
 	return 0
 # imi modifica un task dupa nume
 

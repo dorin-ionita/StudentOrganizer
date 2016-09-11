@@ -33,6 +33,6 @@ Milestones
 1.butonul addTask functioneaza in felul in care am dorit
 2.butonul removeTask functioneaza in felul in care am dorit
 3.butonul postponeTask functioneaza in felul in care am dorit
+4.butonul modifyTask functioneaza in felul in care am dorit
 
-modifyTask
 show schedule
