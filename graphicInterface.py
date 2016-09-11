@@ -229,10 +229,9 @@ def postponeTask():
 #imi postponeaza un task dupa nume
 #eventual si dupa data si ora
 
-def getModifyTaskEntries(line1_entry_left,
-		line2_entry_left,line3_entry_left,line1_entry_right,
-		line2_entry_right,line3_entry_right,line4_entry_right,
-		modify_task_window):
+def getModifyTaskEntries(line1_entry_left,line2_entry_left,
+	line3_entry_left,line1_entry_right,line2_entry_right,
+	line3_entry_right,line4_entry_right,modify_task_window):
 	task_to_modify_name=line1_entry_left.get()
 	task_to_modify_date=line2_entry_left.get()
 	task_to_modify_hour=line3_entry_left.get()
@@ -333,35 +332,41 @@ def modifyTask():
 	modify_task_window.mainloop()
 	return 0
 # imi modifica un task dupa nume
+# in stanga se va primii taskul de modificat
+# iar in dreapta modificarile taskului
+# TO DO: adaugata functionalitate (dar in scheduler nu aici)
+# 		care sa imi ia campurile goale introduse ca fiind
+#		campuri ce nu se doresc modificate 
 
-top=Tkinter.Tk()
-button_frame_global=Tkinter.Frame(top)
-button_frame_line1=Tkinter.Frame(button_frame_global)
-button_frame_line2=Tkinter.Frame(button_frame_global)
-but1=Tkinter.Button(button_frame_line2,text="<<day",command=prevDay)
-but2=Tkinter.Button(button_frame_line2,text="day>>",command=nextDay)
-but3=Tkinter.Button(button_frame_line1,text="Add task",command=addTask)
-but4=Tkinter.Button(button_frame_line1,text="Remove task",command=removeTask)
-but5=Tkinter.Button(button_frame_line1,text="Postpone task",command=postponeTask)
-but6=Tkinter.Button(button_frame_line1,text="Modify task",command=modifyTask)
-# text = Tkinter.Text(top)
-# text.insert (END,"Mesaj")
-# msg_to_display=StringVar()
-# label=Tkinter.Message(top,textvariable=msg_to_display,
-# 	width=1000)
-# msg_to_display.set("""asdasdasdasdasdasdasdasdasdasdasdasdasdasdasdadasda
-# 	asdasdasdasdasdasdasdasda""")
-text_schedule=Tkinter.Message(top,text="Mesaj de afisat",width=620)
-top.geometry("640x480+1+1")
-top.title("Time and money management software")
-but1.pack(side=LEFT)
-but2.pack(side=RIGHT)
-but3.pack(side=LEFT)
-but4.pack(side=LEFT)
-but5.pack(side=RIGHT)
-but6.pack(side=RIGHT)
-button_frame_line1.pack(side=TOP)
-button_frame_line2.pack(side=BOTTOM)
-button_frame_global.pack()
-text_schedule.pack()
-top.mainloop()
+def showMainWindow():
+	top=Tkinter.Tk()
+	button_frame_global=Tkinter.Frame(top)
+	button_frame_line1=Tkinter.Frame(button_frame_global)
+	button_frame_line2=Tkinter.Frame(button_frame_global)
+	but1=Tkinter.Button(button_frame_line2,text="<<day",command=prevDay)
+	but2=Tkinter.Button(button_frame_line2,text="day>>",command=nextDay)
+	but3=Tkinter.Button(button_frame_line1,text="Add task",command=addTask)
+	but4=Tkinter.Button(button_frame_line1,text="Remove task",command=removeTask)
+	but5=Tkinter.Button(button_frame_line1,text="Postpone task",command=postponeTask)
+	but6=Tkinter.Button(button_frame_line1,text="Modify task",command=modifyTask)
+	# text = Tkinter.Text(top)
+	# text.insert (END,"Mesaj")
+	# msg_to_display=StringVar()
+	# label=Tkinter.Message(top,textvariable=msg_to_display,
+	# 	width=1000)
+	# msg_to_display.set("""asdasdasdasdasdasdasdasdasdasdasdasdasdasdasdadasda
+	# 	asdasdasdasdasdasdasdasda""")
+	text_schedule=Tkinter.Message(top,text="Mesaj de afisat",width=620)
+	top.geometry("640x480+1+1")
+	top.title("Time and money management software")
+	but1.pack(side=LEFT)
+	but2.pack(side=RIGHT)
+	but3.pack(side=LEFT)
+	but4.pack(side=LEFT)
+	but5.pack(side=RIGHT)
+	but6.pack(side=RIGHT)
+	button_frame_line1.pack(side=TOP)
+	button_frame_line2.pack(side=BOTTOM)
+	button_frame_global.pack()
+	text_schedule.pack()
+	top.mainloop()
