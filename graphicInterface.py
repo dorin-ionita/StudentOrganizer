@@ -340,34 +340,53 @@ def modifyTask():
 # 		care sa imi ia campurile goale introduse ca fiind
 #		campuri ce nu se doresc modificate 
 
-def refresh(window):
+def refresh(window,data_for_schedule,schedule_list):
 	window.destroy()
-	showMainWindow()
+	showMainWindow(data_for_schedule,schedule_list)
 	return 0
 
-def showMainWindow():
+def showMainWindow(data_for_schedule,schedule_list):
 	top=Tkinter.Tk()
-	button_frame_global=Tkinter.Frame(top)
+	top.geometry("500x480+1+1")
+	top.title("Time and money management software")
+
+	vertical_frame=Tkinter.Frame(top)
+
+	button_frame_global=Tkinter.Frame(vertical_frame)
 	button_frame_line1=Tkinter.Frame(button_frame_global)
 	button_frame_line2=Tkinter.Frame(button_frame_global)
-	but1=Tkinter.Button(button_frame_line2,text="<<day",command=prevDay)
-	but2=Tkinter.Button(button_frame_line2,text="day>>",command=nextDay)
-	but3=Tkinter.Button(button_frame_line1,text="Add task",command=addTask)
-	but4=Tkinter.Button(button_frame_line1,text="Remove task",command=removeTask)
-	but5=Tkinter.Button(button_frame_line1,text="Postpone task",command=postponeTask)
-	but6=Tkinter.Button(button_frame_line1,text="Modify task",command=modifyTask)
+	but1=Tkinter.Button(button_frame_line2,text="<<day",
+		command=prevDay)
+	but2=Tkinter.Button(button_frame_line2,text="day>>",
+		command=nextDay)
+	but3=Tkinter.Button(button_frame_line1,text="Add task",
+		command=addTask)
+	but4=Tkinter.Button(button_frame_line1,text="Remove task",
+		command=removeTask)
+	but5=Tkinter.Button(button_frame_line1,text="Postpone task",
+		command=postponeTask)
+	but6=Tkinter.Button(button_frame_line1,text="Modify task",
+		command=modifyTask)
 	but7=Tkinter.Button(button_frame_line2,text="Refresh",
-		command = lambda: refresh(top))
-	# text = Tkinter.Text(top)
-	# text.insert (END,"Mesaj")
-	# msg_to_display=StringVar()
-	# label=Tkinter.Message(top,textvariable=msg_to_display,
-	# 	width=1000)
-	# msg_to_display.set("""asdasdasdasdasdasdasdasdasdasdasdasdasdasdasdadasda
-	# 	asdasdasdasdasdasdasdasda""")
-	text_schedule=Tkinter.Message(top,text="Mesaj de afisat",width=620)
-	top.geometry("640x480+1+1")
-	top.title("Time and money management software")
+		command = lambda: refresh(top,data_for_schedule,schedule_list))
+
+	title_text="The schedule for: "+data_for_schedule
+	schedule_title=Tkinter.Message(vertical_frame,text=title_text,
+		width=620)
+
+	print schedule_list
+
+	schedule_frame=Tkinter.Frame(vertical_frame)
+	i=0
+	for task in schedule_list:
+		j=0
+		for detail in task:
+			print detail
+			Tkinter.Label(schedule_frame,text='%s'%(detail),
+				borderwidth=10).grid(row=i,column=j)
+			j=j+1
+		i=i+1
+
 	but1.pack(side=LEFT)
 	but7.pack(side=LEFT)
 	but2.pack(side=RIGHT)
@@ -375,8 +394,11 @@ def showMainWindow():
 	but4.pack(side=LEFT)
 	but5.pack(side=RIGHT)
 	but6.pack(side=RIGHT)
+	schedule_frame.pack(side=BOTTOM)
 	button_frame_line1.pack(side=TOP)
+	schedule_title.pack(side=BOTTOM)
 	button_frame_line2.pack(side=BOTTOM)
-	button_frame_global.pack()
-	text_schedule.pack()
+	button_frame_global.pack(side=BOTTOM)
+
+	vertical_frame.pack()
 	top.mainloop()

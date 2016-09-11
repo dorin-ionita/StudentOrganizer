@@ -34,11 +34,15 @@ Milestones
 2.butonul removeTask functioneaza in felul in care am dorit
 3.butonul postponeTask functioneaza in felul in care am dorit
 4.butonul modifyTask functioneaza in felul in care am dorit
-
-TO DO:
-*show schedule
-*adauga fereastra principala intr-o fereastra, astfel incat la nevoie
+4.refresh button works
+adauga fereastra principala intr-o fereastra, astfel incat la nevoie
 sa o poti distruge si reconstrui din celelalte functii.
  Va aparea un fisier separat main.py in care se va "porni" practic
  programul. 
-*adauga buton refresh pentru fereastra top
+5.schedule afisat (adica o lista primita)
+6.adauga buton refresh pentru fereastra top
+
+TO DO:
+*arrange schedule to look nice
+*put some color
+*(optional, for future versions):scrollable list as schedule show
