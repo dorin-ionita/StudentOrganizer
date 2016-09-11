@@ -245,6 +245,8 @@ def getModifyTaskEntries(line1_entry_left,line2_entry_left,
 	return [task_to_modify_name, task_to_modify_date, task_to_modify_hour,
 			modified_name, modified_priority, modified_time_req,
 			modified_deadline]
+# Se preiau stringurile introduse in fereastra
+# modify entry
 
 def modifyTask():
 	modify_task_window=Tkinter.Tk()
@@ -338,6 +340,11 @@ def modifyTask():
 # 		care sa imi ia campurile goale introduse ca fiind
 #		campuri ce nu se doresc modificate 
 
+def refresh(window):
+	window.destroy()
+	showMainWindow()
+	return 0
+
 def showMainWindow():
 	top=Tkinter.Tk()
 	button_frame_global=Tkinter.Frame(top)
@@ -349,6 +356,8 @@ def showMainWindow():
 	but4=Tkinter.Button(button_frame_line1,text="Remove task",command=removeTask)
 	but5=Tkinter.Button(button_frame_line1,text="Postpone task",command=postponeTask)
 	but6=Tkinter.Button(button_frame_line1,text="Modify task",command=modifyTask)
+	but7=Tkinter.Button(button_frame_line2,text="Refresh",
+		command = lambda: refresh(top))
 	# text = Tkinter.Text(top)
 	# text.insert (END,"Mesaj")
 	# msg_to_display=StringVar()
@@ -360,6 +369,7 @@ def showMainWindow():
 	top.geometry("640x480+1+1")
 	top.title("Time and money management software")
 	but1.pack(side=LEFT)
+	but7.pack(side=LEFT)
 	but2.pack(side=RIGHT)
 	but3.pack(side=LEFT)
 	but4.pack(side=LEFT)

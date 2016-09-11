@@ -35,4 +35,10 @@ Milestones
 3.butonul postponeTask functioneaza in felul in care am dorit
 4.butonul modifyTask functioneaza in felul in care am dorit
 
-show schedule
+TO DO:
+*show schedule
+*adauga fereastra principala intr-o fereastra, astfel incat la nevoie
+sa o poti distruge si reconstrui din celelalte functii.
+ Va aparea un fisier separat main.py in care se va "porni" practic
+ programul. 
+*adauga buton refresh pentru fereastra top
