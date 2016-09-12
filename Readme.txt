@@ -43,3 +43,35 @@ sa o poti distruge si reconstrui din celelalte functii.
 6.adauga buton refresh pentru fereastra top
 
 7.arranged schedule to look nice, colors looks strange=better without
+
+*dupa refresh nu mai merg zilele inainte si inapoi
+*adauga icon
+*implementeaza buton view all tasks, view timetable
+	(pe zilele saptamanii)
+
+STEPS:
+# TO DO: I.INITIALIZAREA SCHEDULERULUI
+#		 	1.in primul rand se citesc tasks si timetable
+#			2.din timetable, se adauga in schedule, functie de zi fiecare
+#				task, in fiecare zi din saptamana
+#			3.din tasks se aleg taskurile cu
+#				deadline de la cel mai apropiat la cel mai departat
+#			4.pentru fiecare deadline care se gaseste in vreun task,
+#			 	daca sunt mai multe taskuri cu acel deadline atunci
+#				se alege prioritatea mai mare
+#				i)daca taskul e first of day se adauga +1 ora dimineata
+#				ii)daca taskul este last of day se adauga +1 ora seara
+#				iii)daca dupa task urmeaza pauza se adauga +30 min
+#					liber
+#				iv)daca task=somn se adauga 30 de minute inainte libere
+#			6.se cauta succesiv in schedule locuri libere
+#				pentru a introduce taskurile.
+#				Taskurile nu se pot faramita, a.i. ele trebuie deja
+#				introduse faramitate.
+#			7.se afiseaza in fereastra principala
+# 		II.ADAUGA TASK
+#		III.REMOVE TASK
+				problema mare daca removez un task care este si in
+					timetable. cum il fac sa nu mai fie pus in schedule?
+#		IV.MODIFY TASK
+#		V.POSTPONE TASK

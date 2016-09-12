@@ -367,6 +367,8 @@ def refresh(window,data_for_schedule,schedule_list):
 	window.destroy()
 	showMainWindow(data_for_schedule,
 		str(data_for_schedule)[:10],schedule_list)
+	# primele 10 caractere din data e ce ma intereseaza
+	# (data propriuzisa)
 	return 0
 # implementeaza butonul de refresh
 # distruge fereastra principala si recreeaza alta

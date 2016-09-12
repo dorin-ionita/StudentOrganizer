@@ -13,3 +13,4 @@ echo "----Pushing..."
 git push origin master
 # cum rezolv faza cu credentialele...?
 echo "----Git Hub updated succesfully!"
+
