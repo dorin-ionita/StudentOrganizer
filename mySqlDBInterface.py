@@ -62,6 +62,15 @@ def getScheduleFromDB():
 	db.close()
 	return schedule
 
+def getScheduleForDate(date):
+	db = MySQLdb.connect("localhost","root",
+		"ionita","studentorganizer")
+	cursor = db.cursor()
+	cursor.execute("""SELECT * FROM schedule
+		WHERE DATE=%s""",date)
+	schedule = cursor.fetchall()
+	db.close()
+	return schedule
 
 #functile ce pot modifica in baza de date sunt:
 #changeScheduleInDB (modifica o linie)--!! adauga si la celelalte tabele

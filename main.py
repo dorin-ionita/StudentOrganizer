@@ -2,9 +2,18 @@
 
 import graphicInterface
 import mySqlDBInterface
+import time
 
-x=mySqlDBInterface.getTimetableFromDB()
+print(datetime.datetime.now())
+print(type(datetime.datetime.now()))
 
-print x
+current_date=time.strftime("%Y-%m-%d")
+print type(time.strftime("%Y-%m-%d"))
 
-graphicInterface.showMainWindow("2016-11-15",x)
+#DOAR PENTRU TEST:
+schedule=mySqlDBInterface.getTimetableFromDB()
+graphicInterface.showMainWindow(current_date,schedule)
+
+#OFICIAL:
+# schedule = mySqlDBInterface.getScheduleForDate(current_date)
+# graphicInterface.showMainWindow(current_date,schedule)

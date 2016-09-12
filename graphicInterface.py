@@ -8,6 +8,7 @@
 import Tkinter
 from Tkinter import *
 import tkMessageBox
+import Tix
 
 def nextDay():
 	print "next day"
@@ -344,11 +345,15 @@ def refresh(window,data_for_schedule,schedule_list):
 	window.destroy()
 	showMainWindow(data_for_schedule,schedule_list)
 	return 0
+# implementeaza butonul de refresh
+# distruge fereastra principala si recreeaza alta
+# eventual cu alt schedule:D 
 
 def showMainWindow(data_for_schedule,schedule_list):
 	top=Tkinter.Tk()
 	top.geometry("500x480+1+1")
 	top.title("Time and money management software")
+	# top.configure(background='white')
 
 	vertical_frame=Tkinter.Frame(top)
 
@@ -374,19 +379,16 @@ def showMainWindow(data_for_schedule,schedule_list):
 	schedule_title=Tkinter.Message(vertical_frame,text=title_text,
 		width=620)
 
-	print schedule_list
-
-	schedule_frame=Tkinter.Frame(vertical_frame)
+	schedule_frame=Tkinter.Frame(vertical_frame,
+		borderwidth=2,relief=SUNKEN)
 	i=0
 	for task in schedule_list:
 		j=0
 		for detail in task:
-			print detail
 			Tkinter.Label(schedule_frame,text='%s'%(detail),
 				borderwidth=10).grid(row=i,column=j)
 			j=j+1
 		i=i+1
-
 	but1.pack(side=LEFT)
 	but7.pack(side=LEFT)
 	but2.pack(side=RIGHT)
@@ -394,7 +396,9 @@ def showMainWindow(data_for_schedule,schedule_list):
 	but4.pack(side=LEFT)
 	but5.pack(side=RIGHT)
 	but6.pack(side=RIGHT)
+
 	schedule_frame.pack(side=BOTTOM)
+	# scrollbar.config(command=schedule_frame.yview)
 	button_frame_line1.pack(side=TOP)
 	schedule_title.pack(side=BOTTOM)
 	button_frame_line2.pack(side=BOTTOM)
@@ -402,3 +406,4 @@ def showMainWindow(data_for_schedule,schedule_list):
 
 	vertical_frame.pack()
 	top.mainloop()
+# afiseaza tot ce tine de fereastra principala

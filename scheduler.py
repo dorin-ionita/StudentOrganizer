@@ -31,7 +31,7 @@ def getFromDB(tasks,timetable,schedule):
 	# print '\n'
 	# print timetable
 	# print type(timetable[0][2])
-	
+	return (tasks,timetable,schedule)
 	# print type(tasks[1][4])
 # imi returneaza din baza de date tasks, timetable,
 # schedule in format de matrice ca lista de liste
