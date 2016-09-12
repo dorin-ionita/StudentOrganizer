@@ -43,6 +43,7 @@ sa o poti distruge si reconstrui din celelalte functii.
 6.adauga buton refresh pentru fereastra top
 
 7.arranged schedule to look nice, colors looks strange=better without
+<<<<<<< HEAD:Readme.txt
 
 *dupa refresh nu mai merg zilele inainte si inapoi
 *adauga icon
@@ -75,3 +76,5 @@ STEPS:
 					timetable. cum il fac sa nu mai fie pus in schedule?
 #		IV.MODIFY TASK
 #		V.POSTPONE TASK
+=======
+>>>>>>> d01f7a41d9f69ccff8801616724399c3fb4bb322:readme.txt
