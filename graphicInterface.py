@@ -365,7 +365,8 @@ def modifyTask():
 
 def refresh(window,data_for_schedule,schedule_list):
 	window.destroy()
-	showMainWindow(data_for_schedule,schedule_list)
+	showMainWindow(data_for_schedule,
+		str(data_for_schedule)[:10],schedule_list)
 	return 0
 # implementeaza butonul de refresh
 # distruge fereastra principala si recreeaza alta
