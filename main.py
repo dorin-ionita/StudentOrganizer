@@ -3,17 +3,16 @@
 import graphicInterface
 import mySqlDBInterface
 import time
+import datetime
 
-print(datetime.datetime.now())
-print(type(datetime.datetime.now()))
-
-current_date=time.strftime("%Y-%m-%d")
-print type(time.strftime("%Y-%m-%d"))
+current_date_raw = datetime.datetime.now() 
+	#este de tip datetime.datetime
+current_date_string=str(current_date_raw)[0:10]
 
 #DOAR PENTRU TEST:
-schedule=mySqlDBInterface.getTimetableFromDB()
-graphicInterface.showMainWindow(current_date,schedule)
+schedule=mySqlDBInterface.getTasksFromDB()
+graphicInterface.showMainWindow(current_date_string,current_date_raw,schedule)
 
 #OFICIAL:
-# schedule = mySqlDBInterface.getScheduleForDate(current_date)
-# graphicInterface.showMainWindow(current_date,schedule)
+# schedule = mySqlDBInterface.getScheduleForDate(current_date_string)
+# graphicInterface.showMainWindow(current_date_string,schedule)

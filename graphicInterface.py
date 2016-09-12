@@ -9,14 +9,36 @@ import Tkinter
 from Tkinter import *
 import tkMessageBox
 import Tix
+import time
+import datetime
+import mySqlDBInterface
 
-def nextDay():
-	print "next day"
+def nextDay(raw_data,window):
+	#raw data e data in format datetime.datetime
+	#string data e data convertita la string (doar data)
+	#-de aia am sliceul de la 0 la 10
+	raw_data += datetime.timedelta(days=1)
+	string_data=str(raw_data)[0:10]
+	schedule=mySqlDBInterface.getScheduleForDate(string_data)
+	window.destroy()
+	showMainWindow(string_data,raw_data,schedule)
 	return 0
 # Se va afisa ce este schedulat pentru ziua urmatoare,
 # daca este schedulat ceva.
+# Se distruge vechea fereastra principala si se creeaza
+# una noua cu aceste date.
 
-def prevDay():
+def prevDay(raw_data,window):
+	current_date_raw = datetime.datetime.now()
+	if current_date_raw > raw_data :
+		return 0
+	else :
+		raw_data -= datetime.timedelta(days=1)
+		string_data = str(raw_data)[:10]
+		schedule = mySqlDBInterface.getScheduleForDate(string_data)
+		window.destroy()
+		showMainWindow(string_data,raw_data,schedule)
+		return 0
 	return 0
 # Se va afisa ce este schedulat pentru ziua anterioara,
 # daca este schedulat ceva.
@@ -349,7 +371,8 @@ def refresh(window,data_for_schedule,schedule_list):
 # distruge fereastra principala si recreeaza alta
 # eventual cu alt schedule:D 
 
-def showMainWindow(data_for_schedule,schedule_list):
+def showMainWindow(data_for_schedule,data_for_schedule_raw,
+	schedule_list):
 	top=Tkinter.Tk()
 	top.geometry("500x480+1+1")
 	top.title("Time and money management software")
@@ -361,9 +384,9 @@ def showMainWindow(data_for_schedule,schedule_list):
 	button_frame_line1=Tkinter.Frame(button_frame_global)
 	button_frame_line2=Tkinter.Frame(button_frame_global)
 	but1=Tkinter.Button(button_frame_line2,text="<<day",
-		command=prevDay)
+		command= lambda: prevDay(data_for_schedule_raw,top))
 	but2=Tkinter.Button(button_frame_line2,text="day>>",
-		command=nextDay)
+		command= lambda: nextDay(data_for_schedule_raw,top))
 	but3=Tkinter.Button(button_frame_line1,text="Add task",
 		command=addTask)
 	but4=Tkinter.Button(button_frame_line1,text="Remove task",

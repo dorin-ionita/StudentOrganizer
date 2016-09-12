@@ -67,7 +67,10 @@ def getScheduleForDate(date):
 		"ionita","studentorganizer")
 	cursor = db.cursor()
 	cursor.execute("""SELECT * FROM schedule
-		WHERE DATE=%s""",date)
+		WHERE DATE='%s'"""%date)
+	# CE HAL DE SINTAXA! keep this one in mind
+	# HOW THE FUCK IS IT EVEN POSSIBLE TO WORK?!
+	print "Debug 3.2"
 	schedule = cursor.fetchall()
 	db.close()
 	return schedule

@@ -42,7 +42,4 @@ sa o poti distruge si reconstrui din celelalte functii.
 5.schedule afisat (adica o lista primita)
 6.adauga buton refresh pentru fereastra top
 
-TO DO:
-*arrange schedule to look nice
-*put some color
-*(optional, for future versions):scrollable list as schedule show
+7.arranged schedule to look nice, colors looks strange=better without
