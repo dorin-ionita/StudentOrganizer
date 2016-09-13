@@ -48,6 +48,7 @@ sa o poti distruge si reconstrui din celelalte functii.
 	new schedule list.
 10.fixed the refresh button so that after refresh I can go the day
 	after and the day before
+11.butonul modify task modifica in baza de date
 
 *adauga icon
 *implementeaza buton view all tasks, view timetable
@@ -90,7 +91,7 @@ STEPS:
 #				problema mare daca removez un task care este si in
 #					timetable. cum il fac sa nu mai fie pus in schedule?
 #				pune numele __no_timetable__, de exemplu.
-#		IV.MODIFY TASK
+#		IV.MODIFY TASK 														[x]
 #		V.POSTPONE TASK
 #		VI.ADD TASK IN SCHEDULE BY HAND:
 #				pune numele by hand
