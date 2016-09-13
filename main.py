@@ -2,6 +2,7 @@
 
 import graphicInterface
 import mySqlDBInterface
+import scheduler
 import time
 import datetime
 
@@ -23,6 +24,10 @@ import datetime
 current_date_raw = datetime.datetime.now() 
 #este de tip datetime.datetime
 current_date_string=str(current_date_raw)[0:10]
+#am obtinut data de care am nevoie
+
+scheduler.initSchedule()
+#am initiat schedule
 
 #DOAR PENTRU TEST:
 schedule=mySqlDBInterface.getTasksFromDB()

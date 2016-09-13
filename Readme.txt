@@ -69,6 +69,7 @@ sa o poti distruge si reconstrui din celelalte functii.
 STEPS:
 # TO DO: I.INITIALIZAREA SCHEDULERULUI
 #		 	1.in primul rand se citesc tasks si timetable
+			1.1. se sterge tot ce e in schedule
 #			2.din timetable, se adauga in schedule, functie de zi fiecare
 #				task, in fiecare zi din saptamana
 #			3.din tasks se aleg taskurile cu
@@ -87,12 +88,12 @@ STEPS:
 #				introduse faramitate.
 #			7.se afiseaza in fereastra principala
 # 		II.ADAUGA TASK 														[x]
-#		III.REMOVE TASK
+#		III.REMOVE task: requires I
 #				problema mare daca removez un task care este si in
 #					timetable. cum il fac sa nu mai fie pus in schedule?
 #				pune numele __no_timetable__, de exemplu.
 #		IV.MODIFY TASK 														[x]
-#		V.POSTPONE TASK
+#		V.POSTPONE TASK: REQUIRES I
 #		VI.ADD TASK IN SCHEDULE BY HAND:
 #				pune numele by hand
 #			fa clean inainte, in schedule, cu exceptile mentionate

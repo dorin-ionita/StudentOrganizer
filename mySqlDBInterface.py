@@ -246,3 +246,14 @@ def modifyTask (task_to_modify_name,task_to_modify_date,
 	return 0
 	#note. pare sa mearga
 # functia ce va fi apelata la apasarea OK din butonul modifyTask
+
+def deleteAllEntriesInTabel(tabel_name) :
+	db = MySQLdb.connect("localhost","root","ionita"
+		,"studentorganizer")
+	cursor = db.cursor()
+	cursor.execute("""DELETE FROM %s"""%(tabel_name))
+	db.commit()
+	db.close()
+	return 0
+	#note. pare sa mearga
+# functi asta imi va sterge tot continutul tabelei tabel_name
