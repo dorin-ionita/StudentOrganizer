@@ -45,6 +45,8 @@ sa o poti distruge si reconstrui din celelalte functii.
 8.butonul de addTask adauga in baza de date:D
 9.fixed the refresh button so that it refreshes properly, getting the
 	new schedule list.
+10.fixed the refresh button so that after refresh I can go the day
+	after and the day before
 
 *dupa refresh nu mai merg zilele inainte si inapoi
 *adauga icon
@@ -61,7 +63,6 @@ sa o poti distruge si reconstrui din celelalte functii.
 *vezi de ce nu merge refresh, de ce apar cacaturile vechi inca
 *la final de tot, modifica milestone9 si main.py sa lucreze
 	pe task, nu pe schedule
-*cacat, nu merge inainte si inapoi
 
 STEPS:
 # TO DO: I.INITIALIZAREA SCHEDULERULUI

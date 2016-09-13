@@ -368,8 +368,8 @@ def refresh(window,data_for_schedule,schedule_list):
 	#instructiunea urmatoare trebuie modificata in versiunea
 	#finala, sa nu ia din tasks, sa ia din schedule
 	schedule_list=mySqlDBInterface.getTasksFromDB()
-	showMainWindow(data_for_schedule,
-		str(data_for_schedule)[:10],schedule_list)
+	showMainWindow(str(data_for_schedule)[:10],
+		data_for_schedule,schedule_list)
 	# primele 10 caractere din data e ce ma intereseaza
 	# (data propriuzisa)
 	return 0
@@ -379,6 +379,10 @@ def refresh(window,data_for_schedule,schedule_list):
 
 def showMainWindow(data_for_schedule,data_for_schedule_raw,
 	schedule_list):
+	# print type(data_for_schedule)
+	# print type(data_for_schedule_raw)
+	# print type(schedule_list)
+	# print "\n"
 	top=Tkinter.Tk()
 	top.geometry("500x480+1+1")
 	top.title("Time and money management software")
@@ -402,7 +406,7 @@ def showMainWindow(data_for_schedule,data_for_schedule_raw,
 	but6=Tkinter.Button(button_frame_line1,text="Modify task",
 		command=modifyTask)
 	but7=Tkinter.Button(button_frame_line2,text="Refresh",
-		command = lambda: refresh(top,data_for_schedule,schedule_list))
+		command = lambda: refresh(top,data_for_schedule_raw,schedule_list))
 
 	title_text="The schedule for: "+data_for_schedule
 	schedule_title=Tkinter.Message(vertical_frame,text=title_text,
