@@ -45,12 +45,12 @@ def prevDay(raw_data,window):
 
 def getAddTaskEntries(line1_entry,line2_entry,
 	line3_entry,line4_entry,add_task_window):
-	print line1_entry.get()
-	task_name=line1_entry.get()
-	priority=line2_entry.get()
-	time_req=line3_entry.get()
-	deadline=line4_entry.get()
-	# print [task_name, priority, time_req, deadline]
+	task_name = line1_entry.get()
+	priority = line2_entry.get()
+	time_req = line3_entry.get()
+	deadline = line4_entry.get()
+	mySqlDBInterface.addTask(task_name,priority,
+		time_req,deadline)
 	confirmation_msg = tkMessageBox.showinfo("Info Received",
 		"The information you introduced about the task was received.")
 	add_task_window.destroy()
@@ -365,6 +365,9 @@ def modifyTask():
 
 def refresh(window,data_for_schedule,schedule_list):
 	window.destroy()
+	#instructiunea urmatoare trebuie modificata in versiunea
+	#finala, sa nu ia din tasks, sa ia din schedule
+	schedule_list=mySqlDBInterface.getTasksFromDB()
 	showMainWindow(data_for_schedule,
 		str(data_for_schedule)[:10],schedule_list)
 	# primele 10 caractere din data e ce ma intereseaza

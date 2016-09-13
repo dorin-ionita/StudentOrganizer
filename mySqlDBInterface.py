@@ -187,3 +187,33 @@ def addTimetableInDB(ID,DAY,START_HOUR,END_HOUR,NAME,PARITY):
 	db.close()
 
 #NIMIC DE AICI NU A FOST TESTAT!
+
+########################################################################
+
+def addTask(task_name,priority,time_req,deadline) :
+	db = MySQLdb.connect("localhost",
+		"root","ionita","studentorganizer")
+	cursor = db.cursor()
+	task_name=str(task_name)
+	priority=str(priority)
+	time_req=str(time_req)
+	deadline=str(deadline)
+	cursor.execute("""SELECT * FROM tasks""")
+	tasks=cursor.fetchall()
+	tasks=int(len(tasks))+1
+	print tasks
+	print task_name
+	print priority
+	print time_req
+	print deadline
+
+	cursor.execute("""INSERT INTO tasks
+					VALUES ('%s','%s','%s','%s','%s')"""
+					%(tasks,task_name,priority,time_req,deadline))
+	db.commit()
+	db.close()
+	return 0
+	#note. it worked just fain
+# functia ce va fi apelata la apasarea OK din butonul addTask
+
+
