@@ -119,9 +119,11 @@ def addTask():
 # Se va afisa o fereastra ce contine campuri
 # pentru introducerea de NAME, PRIORITY, TIME_REQ,
 # DEADLINE, si butoane ok ce trimit raspunsurile
-# in stringuri
+# in stringuri.
 # Functia returneaza in ordine stringurile
-# name, priority, time_req, deadline
+# name, priority, time_req, deadline.
+# De asemenea, se adauga in baza de date printr-un
+# apel al unei functii din mySqlDBInterface
 
 def getRemoveTaskEntries(line1_entry,line2_entry,
 	line3_entry,remove_task_window):
@@ -262,6 +264,10 @@ def getModifyTaskEntries(line1_entry_left,line2_entry_left,
 	modified_priority=line2_entry_right.get()
 	modified_time_req=line3_entry_right.get()
 	modified_deadline=line4_entry_right.get()
+	mySqlDBInterface.modifyTask(task_to_modify_name,
+		task_to_modify_date,task_to_modify_hour,
+		modified_name,modified_priority,
+		modified_time_req,modified_deadline)
 	confirmation_msg=tkMessageBox.showinfo("Info Received",
 		"The information you introduced about the task was received.")
 	modify_task_window.destroy()

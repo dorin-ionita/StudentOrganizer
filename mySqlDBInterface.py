@@ -201,12 +201,6 @@ def addTask(task_name,priority,time_req,deadline) :
 	cursor.execute("""SELECT * FROM tasks""")
 	tasks=cursor.fetchall()
 	tasks=int(len(tasks))+1
-	print tasks
-	print task_name
-	print priority
-	print time_req
-	print deadline
-
 	cursor.execute("""INSERT INTO tasks
 					VALUES ('%s','%s','%s','%s','%s')"""
 					%(tasks,task_name,priority,time_req,deadline))
@@ -216,4 +210,39 @@ def addTask(task_name,priority,time_req,deadline) :
 	#note. it worked just fain
 # functia ce va fi apelata la apasarea OK din butonul addTask
 
-
+def modifyTask (task_to_modify_name,task_to_modify_date,
+	task_to_modify_hour,
+	modified_name,modified_priority,modified_time_req,
+	modified_deadline) :
+	db = MySQLdb.connect("localhost","root","ionita",
+		"studentorganizer")
+	cursor = db.cursor()
+	task_to_modify_name = str(task_to_modify_name)
+	task_to_modify_date = str(task_to_modify_date)
+	task_to_modify_hour = str(task_to_modify_hour)
+	# date si hour nu au importanta :D
+	modified_name = str(modified_name)
+	modified_priority = str(modified_priority)
+	modified_time_req = str(modified_time_req)
+	modified_deadline = str(modified_deadline)
+	if modified_name :
+		cursor.execute("""UPDATE tasks SET NAME='%s'
+						WHERE NAME='%s'"""
+						%(modified_name,task_to_modify_name))
+	if modified_priority :
+		cursor.execute("""UPDATE tasks SET PRIORITY='%s'
+						WHERE NAME='%s'"""
+						%(modified_priority,task_to_modify_name))
+	if modified_time_req :
+		cursor.execute("""UPDATE tasks SET TIME_REQ='%s'
+						WHERE NAME='%s'"""
+						%(modified_time_req,task_to_modify_name))
+	if modified_deadline :
+		cursor.execute("""UPDATE tasks SET DEADLINE='%s'
+						WHERE NAME='%s'"""
+						%(modified_deadline,task_to_modify_name))
+	db.commit()
+	db.close()
+	return 0
+	#note. pare sa mearga
+# functia ce va fi apelata la apasarea OK din butonul modifyTask

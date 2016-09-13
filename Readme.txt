@@ -1,4 +1,5 @@
-	Se foloseste o baza de date cu parola "ionita", username root.
+	Se foloseste o baza de date cu parola "ionita", username root, configurabila
+	din ./cfg/database_authentication.cfg
 	Baza de date se numeste studentorganizer si este localhost.
 	
 baza de date contine:
@@ -48,7 +49,6 @@ sa o poti distruge si reconstrui din celelalte functii.
 10.fixed the refresh button so that after refresh I can go the day
 	after and the day before
 
-*dupa refresh nu mai merg zilele inainte si inapoi
 *adauga icon
 *implementeaza buton view all tasks, view timetable
 	(pe zilele saptamanii)
@@ -63,6 +63,7 @@ sa o poti distruge si reconstrui din celelalte functii.
 *vezi de ce nu merge refresh, de ce apar cacaturile vechi inca
 *la final de tot, modifica milestone9 si main.py sa lucreze
 	pe task, nu pe schedule
+*notify bug. poate cu CGI
 
 STEPS:
 # TO DO: I.INITIALIZAREA SCHEDULERULUI
@@ -84,7 +85,7 @@ STEPS:
 #				Taskurile nu se pot faramita, a.i. ele trebuie deja
 #				introduse faramitate.
 #			7.se afiseaza in fereastra principala
-# 		II.ADAUGA TASK
+# 		II.ADAUGA TASK 														[x]
 #		III.REMOVE TASK
 #				problema mare daca removez un task care este si in
 #					timetable. cum il fac sa nu mai fie pus in schedule?
