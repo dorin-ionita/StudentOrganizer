@@ -1,6 +1,7 @@
 #!/usr/bin/python
 
 import MySQLdb
+import scheduler
 
 def getTasksFromDB():
 	#Aceasta functie imi returneaza taskurile
@@ -257,3 +258,46 @@ def deleteAllEntriesInTabel(tabel_name) :
 	return 0
 	#note. pare sa mearga
 # functi asta imi va sterge tot continutul tabelei tabel_name
+
+def addTaskToScheduleForDayWeek(date,day_week) :
+	#functia va fi hardocata pentru taskuri din timetable
+	db = MySQLdb.connect("localhost","root","ionita",
+		"studentorganizer")
+	cursor = db.cursor()
+	cursor.execute("""SELECT * FROM timetable WHERE DAY='%s'"""
+					%(day_week))
+	tasks = cursor.fetchall()
+	#DEBUG: dayweek si tasks sunt ok
+	#E necesar sa aflu IDul pe care sa il adaug in BD:
+	cursor.execute("""SELECT * FROM schedule""")
+	ID_to_add_in_schedule = len(cursor.fetchall()) + 1
+	#DEBUG: ID_to_add_in_schedule is ok
+	for task in tasks :
+		# IDul nu ramane acelasi
+		# trebuie sa convertesc datele la string
+		date_parity = scheduler.decideDateParity(date)
+		#DEBUG: pana aici merge
+		start_hour = str(task[2])
+		end_hour = str(task[3])
+		name = str(task[4])
+		parity = str(task[5])
+		date_parity = str(date_parity)
+		# pentru a putea sa compar paritatile
+		# print task #ce pula mea?
+		if parity==date_parity or parity==2 :
+			#DEBUG: intra calumea in if (nu am testat parity==2)
+			cursor.execute("""INSERT INTO schedule
+							VALUES ('%d','%s','%s','%s','%s','0')"""
+							%(ID_to_add_in_schedule,date,start_hour,
+								end_hour,name))
+		ID_to_add_in_schedule += 1
+	db.commit()
+	db.close
+	return 0
+	#DEBUG: pare ca in sfarsit merge
+# primeste ca parametrii data la care sa adauge in schedule
+# (data este sub forma string)
+# precum si ce fel de zi este acea data
+# Imi adauga in baza de date din timetable tot ce se potriveste
+# pe acea zi (pe ziua day_week) din saptamana
+

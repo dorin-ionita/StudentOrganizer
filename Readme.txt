@@ -65,11 +65,13 @@ sa o poti distruge si reconstrui din celelalte functii.
 *la final de tot, modifica milestone9 si main.py sa lucreze
 	pe task, nu pe schedule
 *notify bug. poate cu CGI
+*adauga in cfg file data de inceptu a facultatii, pentru a stii cum
+	decurg partitatile
 
 STEPS:
 # TO DO: I.INITIALIZAREA SCHEDULERULUI
-#		 	1.in primul rand se citesc tasks si timetable
-			1.1. se sterge tot ce e in schedule
+#		 	1.in primul rand se citesc tasks si timetable 					[x]
+			1.1. se sterge tot ce e in schedule 							[x]
 #			2.din timetable, se adauga in schedule, functie de zi fiecare
 #				task, in fiecare zi din saptamana
 #			3.din tasks se aleg taskurile cu
