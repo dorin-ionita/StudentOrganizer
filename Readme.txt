@@ -49,6 +49,8 @@ sa o poti distruge si reconstrui din celelalte functii.
 10.fixed the refresh button so that after refresh I can go the day
 	after and the day before
 11.butonul modify task modifica in baza de date
+12.adauga in cfg file data de inceptu a facultatii, pentru a stii cum
+	decurg partitatile
 
 *adauga icon
 *implementeaza buton view all tasks, view timetable
@@ -65,8 +67,6 @@ sa o poti distruge si reconstrui din celelalte functii.
 *la final de tot, modifica milestone9 si main.py sa lucreze
 	pe task, nu pe schedule
 *notify bug. poate cu CGI
-*adauga in cfg file data de inceptu a facultatii, pentru a stii cum
-	decurg partitatile
 
 STEPS:
 # TO DO: I.INITIALIZAREA SCHEDULERULUI
