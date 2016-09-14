@@ -96,12 +96,14 @@ def addFromTimetableToSchedule(timetable) :
 	return 0   #?TO DO
 
 def initSchedule () :
-	[tasks,timetable,schedule] = getFromDB()
 	mySqlDBInterface.deleteAllEntriesInTabel("schedule")
 	[tasks,timetable,schedule]=getFromDB()
-	# pana aici functioneaza perfect
+	# DEBUG:pana aici functioneaza perfect
 	addFromTimetableToSchedule(timetable)
 	[tasks,timetable,schedule]=getFromDB()
+	# e nevoie sa recitesc pt ca s-a modificat schedule
+	
+	# DEBUG:pare ca merge pana aici
 	# print schedule
 	# schedule = addFromTasksToSchedule(tasks,schedule)			#TO DO
 	return 0

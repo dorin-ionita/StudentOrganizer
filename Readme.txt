@@ -73,7 +73,7 @@ STEPS:
 #		 	1.in primul rand se citesc tasks si timetable 					[x]
 			1.1. se sterge tot ce e in schedule 							[x]
 #			2.din timetable, se adauga in schedule, functie de zi fiecare
-#				task, in fiecare zi din saptamana
+#				task, in fiecare zi din saptamana							[x]
 #			3.din tasks se aleg taskurile cu
 #				deadline de la cel mai apropiat la cel mai departat
 #			4.pentru fiecare deadline care se gaseste in vreun task,
