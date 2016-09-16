@@ -78,10 +78,10 @@ STEPS:
 #			2.din timetable, se adauga in schedule, functie de zi fiecare
 #				task, in fiecare zi din saptamana							[x]
 #			3.din tasks se aleg taskurile cu
-#				deadline de la cel mai apropiat la cel mai departat
+#				deadline de la cel mai apropiat la cel mai departat			[x]
 #			4.pentru fiecare deadline care se gaseste in vreun task,
 #			 	daca sunt mai multe taskuri cu acel deadline atunci
-#				se alege prioritatea mai mare
+#				se alege prioritatea mai mare								[x]
 #			  NOTE: 3 si 4 sa se efectueze intr-o sortare
 #				i)daca taskul e first of day se adauga +1 ora dimineata
 #				ii)daca taskul este last of day se adauga +1 ora seara

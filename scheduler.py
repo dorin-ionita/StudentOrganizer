@@ -7,6 +7,7 @@ from datetime import datetime
 import datetime
 import pandas  #pentru data_range
 from dateutil import parser #pentru coversie str->datetime
+import operator #pentru sortare
 
 def getFromDB() :
 	tasks = mySqlDBInterface.getTasksFromDB()
@@ -143,6 +144,12 @@ def removeFromListWhatHasNoDeadlineOrPriority(tasks) :
 # date despre deadline sau despre prioritate
 # TO DO: fa prioritate by default 0, iar deadline=90zile
 
+def sortTasks(tasks) :
+	tasks = sorted (tasks, key = operator.itemgetter(2,4))
+	return tasks
+# functie ce imi sorteaza taskurile crescator
+# mai intai dupa deadline si apoi dupa priority
+
 def addFromTasksToSchedule(tasks) :
 	# print tasks
 	# deadlines = [ deadline[4] for deadline in tasks ]
@@ -152,6 +159,7 @@ def addFromTasksToSchedule(tasks) :
 	# #TO DO: trebuie ordonata lista
 	tasks = removeFromListWhatHasNoDeadlineOrPriority(tasks)
 	# am scapat de taskurile neconforme
+	tasks = sortTasks(tasks)
 	return 0
 # analog addFromTimetableToSchedule
 
