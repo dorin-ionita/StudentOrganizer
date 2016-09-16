@@ -151,12 +151,6 @@ def sortTasks(tasks) :
 # mai intai dupa deadline si apoi dupa priority
 
 def addFromTasksToSchedule(tasks) :
-	# print tasks
-	# deadlines = [ deadline[4] for deadline in tasks ]
-	# deadlines = removeFromListWhatIsNotDatetime(deadlines)
-	# priorities = [ priority[2] for priority in tasks ]
-	# priorities = removeFromListWhatIsNotString(priorities)
-	# #TO DO: trebuie ordonata lista
 	tasks = removeFromListWhatHasNoDeadlineOrPriority(tasks)
 	# am scapat de taskurile neconforme
 	tasks = sortTasks(tasks)
