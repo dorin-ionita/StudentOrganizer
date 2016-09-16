@@ -94,6 +94,66 @@ def addFromTimetableToSchedule(timetable) :
 		mySqlDBInterface.addTaskToScheduleForDayWeek(date,day_week)
 		#date si day_week sunt trimise ca stringuri
 	return 0   #?TO DO
+# functia imi adauga din timetable in schedule
+# adica imi scheduleaza timetabelu
+# nu intoarce nimic, doar modifica baza de date
+
+def removeFromListWhatIsNotDatetime(deadlines) :
+	for deadline in deadlines :
+		if isinstance(deadline,datetime.date) :
+			continue
+		else :
+			deadlines.remove(deadline)
+	# retine si asta
+	if not isinstance(deadlines[len(deadlines)-1],datetime.date) :
+		deadlines.remove(deadlines[len(deadlines)-1])
+	# removez ce a fost introdus gol, ultima nu stiu de ce nu a vrut
+	return deadlines
+# imi scoate dintr-o lista tot ce nu este de tipul
+# datetime.date.
+# Primeste lista ca parametru si o intoarce fara orice altceva
+# inafara de datetime.date
+# USELESS
+
+def removeFromListWhatIsNotString(priorities) :
+	for priority in priorities :
+		if isinstance(priority,string) :
+			continue
+		else :
+			priorities.remove(priority)
+	if not isinstance(priorities[len(priorities)-1],string) :
+		priorities.remove(priorities[len(priorities)-1])
+	return priorities
+# analog functiei de mai sus, dar cu string, nu datetime
+# USELESS
+
+def removeFromListWhatHasNoDeadlineOrPriority(tasks) :
+	for task in tasks :
+		if ( isinstance(task[2],str) or 
+			isinstance(task[4],datetime.date) ) :
+			continue
+		else :
+			tasks.remove(task)
+	# if ((not isinstance(tasks[len(tasks)-1][2],str)) or
+	# 	(not isinstance(tasks[len(tasks)-1][4],datetime.date)) ) :
+	# 	tasks.remove(tasks[len(tasks)-1])
+	return tasks
+# DEBUG: It works just fine
+# imi elimina din lista de taskuri pe cele pentru care nu exista
+# date despre deadline sau despre prioritate
+# TO DO: fa prioritate by default 0, iar deadline=90zile
+
+def addFromTasksToSchedule(tasks) :
+	# print tasks
+	# deadlines = [ deadline[4] for deadline in tasks ]
+	# deadlines = removeFromListWhatIsNotDatetime(deadlines)
+	# priorities = [ priority[2] for priority in tasks ]
+	# priorities = removeFromListWhatIsNotString(priorities)
+	# #TO DO: trebuie ordonata lista
+	tasks = removeFromListWhatHasNoDeadlineOrPriority(tasks)
+	# am scapat de taskurile neconforme
+	return 0
+# analog addFromTimetableToSchedule
 
 def initSchedule () :
 	mySqlDBInterface.deleteAllEntriesInTabel("schedule")
@@ -101,6 +161,10 @@ def initSchedule () :
 	# DEBUG:pana aici functioneaza perfect
 	addFromTimetableToSchedule(timetable)
 	[tasks,timetable,schedule]=getFromDB()
+	
+	addFromTasksToSchedule(tasks)
+
+
 	# e nevoie sa recitesc pt ca s-a modificat schedule
 	
 	# DEBUG:pare ca merge pana aici

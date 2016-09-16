@@ -12,6 +12,7 @@ import Tix
 import time
 import datetime
 import mySqlDBInterface
+import scheduler
 
 def nextDay(raw_data,window):
 	#raw data e data in format datetime.datetime
@@ -373,6 +374,7 @@ def refresh(window,data_for_schedule,schedule_list):
 	window.destroy()
 	#instructiunea urmatoare trebuie modificata in versiunea
 	#finala, sa nu ia din tasks, sa ia din schedule
+	scheduler.initSchedule()
 	schedule_list=mySqlDBInterface.getTasksFromDB()
 	showMainWindow(str(data_for_schedule)[:10],
 		data_for_schedule,schedule_list)
@@ -392,6 +394,7 @@ def showMainWindow(data_for_schedule,data_for_schedule_raw,
 	top=Tkinter.Tk()
 	top.geometry("500x480+1+1")
 	top.title("Time and money management software")
+	top.resizable(0,0)
 	# top.configure(background='white')
 
 	vertical_frame=Tkinter.Frame(top)

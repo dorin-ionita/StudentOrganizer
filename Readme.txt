@@ -67,11 +67,14 @@ sa o poti distruge si reconstrui din celelalte functii.
 *la final de tot, modifica milestone9 si main.py sa lucreze
 	pe task, nu pe schedule
 *notify bug. poate cu CGI
+*fa reschedule button, ca dureaza prea mult de fiecare data
+*fa totul (ne)resizable si adauga scrollbar
+*optimizari. neaparat!
 
 STEPS:
 # TO DO: I.INITIALIZAREA SCHEDULERULUI
 #		 	1.in primul rand se citesc tasks si timetable 					[x]
-			1.1. se sterge tot ce e in schedule 							[x]
+#			1.1. se sterge tot ce e in schedule 							[x]
 #			2.din timetable, se adauga in schedule, functie de zi fiecare
 #				task, in fiecare zi din saptamana							[x]
 #			3.din tasks se aleg taskurile cu
@@ -79,6 +82,7 @@ STEPS:
 #			4.pentru fiecare deadline care se gaseste in vreun task,
 #			 	daca sunt mai multe taskuri cu acel deadline atunci
 #				se alege prioritatea mai mare
+#			  NOTE: 3 si 4 sa se efectueze intr-o sortare
 #				i)daca taskul e first of day se adauga +1 ora dimineata
 #				ii)daca taskul este last of day se adauga +1 ora seara
 #				iii)daca dupa task urmeaza pauza se adauga +30 min
