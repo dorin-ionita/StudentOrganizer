@@ -150,10 +150,47 @@ def sortTasks(tasks) :
 # functie ce imi sorteaza taskurile crescator
 # mai intai dupa deadline si apoi dupa priority
 
-def addFromTasksToSchedule(tasks) :
+def mapFreeHours() :
+	current_date = date = datetime.datetime.now()
+	end_date = current_date + datetime.timedelta(days=90)
+	#acesta e indexul pe orizontala in lista
+	#pe verticala voi avea ora
+	free_hours = [list] * 90
+	for day in free_hours :
+		day = [True] * 24
+	# initial toate orele din fiecare zi din free_hours
+	# sunt libere
+	for date in pandas.date_range(current_date,end_date) :
+		horizontal_index = str(date - current_date)[0:1]
+		horizontal_index = int(horizontal_index)
+		#am extras diferenta in zile
+		schedule_for_date = getScheduleForDate(date)
+		for task in schedule_for_date :
+			for hour in pandas.hour_range(task[2],task[3],freq="60min") :
+				#adica intre start hour si end hour
+				vertical_index = str(hour)[0:2]
+				#vezi daca ai facut sliceul bine
+				free_hours[horizontal_index][vertical_index] = False
+				if hour == task[3]:
+					free_hours[horizontal_index][vertical_index] = True
+	return free_hours
+	# 1.pentru fiecare data din schedule
+	# 2.pentru fiecare task de la data respectiva
+	# marchez aici ca e False ora lui, restul e True 
+	# (adica e free hour)
+	# de asemenea, marchez si durata-1 ore dupa (consider ca 
+	# duratele pot sa fie doar multiplii de ora)
+	# Obs: date este de fapt indexul pe orizontala (pe zile)
+	# 		iar hour este de fapt indexul pe verticala (pe ore),
+	#		intrucat free_hours se poate vizualiza ca un tabel cu
+	#		90 de coloane (pentru cele 90 de zile) si 24 de linii
+	#		(pentru cele 24 de ore)
+
+def addFromTasksToSchedule(tasks,schedule) :
 	tasks = removeFromListWhatHasNoDeadlineOrPriority(tasks)
 	# am scapat de taskurile neconforme
 	tasks = sortTasks(tasks)
+	mySqlDBInterface.insertSortedTasksInSchedule(tasks,schedule)
 	return 0
 # analog addFromTimetableToSchedule
 
@@ -163,8 +200,7 @@ def initSchedule () :
 	# DEBUG:pana aici functioneaza perfect
 	addFromTimetableToSchedule(timetable)
 	[tasks,timetable,schedule]=getFromDB()
-	
-	addFromTasksToSchedule(tasks)
+	addFromTasksToSchedule(tasks,schedule)
 
 
 	# e nevoie sa recitesc pt ca s-a modificat schedule
@@ -174,3 +210,8 @@ def initSchedule () :
 	# schedule = addFromTasksToSchedule(tasks,schedule)			#TO DO
 	return 0
 # imi creeeaza scheduleul, pe baza Timetable si Tasks
+
+
+#OTHER THINGS I LEARNED:
+	# for hour in pandas.hour_range("00:00","24:00",freq="60min")
+

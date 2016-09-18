@@ -301,3 +301,20 @@ def addTaskToScheduleForDayWeek(date,day_week) :
 # Imi adauga in baza de date din timetable tot ce se potriveste
 # pe acea zi (pe ziua day_week) din saptamana
 
+def insertSortedTasksInSchedule(tasks,schedule) :
+	free_hours = scheduler.mapFreeHours()
+	for task in tasks :
+		for day in schedule :
+			for hour in day :
+				if hour == True :
+					#TO DO: insert (task,day,hour)
+					free_hours[day][hour] = False
+					#BUG: DE AICI VOR APAREA DE MAI MULTE ORI
+					# IN SCHEDULE
+					task[3] -= 1
+					if task[3] == 0:
+						break
+	return 0
+
+	# mai intai mapez programul liber din schedule
+	return 0
