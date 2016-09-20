@@ -71,6 +71,7 @@ sa o poti distruge si reconstrui din celelalte functii.
 *fa totul (ne)resizable si adauga scrollbar
 *optimizari. neaparat!
 *modifica readmeul in md pe github
+*fa coding style conform normelor
 
 STEPS:
 # TO DO: I.INITIALIZAREA SCHEDULERULUI
