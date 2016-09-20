@@ -76,7 +76,7 @@ def decideDateParity(date) :
 # Imi decide ce fel de paritate are saptamana (paritate ca saptamana
 # unversitara)
 
-def addFromTimetableToSchedule(timetable) :
+def addFromTimetableToSchedule(timetable,schedule) :
 	# planificator pe 90 de zile
 	# dar ce fac daca am si date trecute?! neindeplinite
 	current_date = datetime.datetime.now()
@@ -164,7 +164,7 @@ def mapFreeHours() :
 		horizontal_index = str(date - current_date)[0:1]
 		horizontal_index = int(horizontal_index)
 		#am extras diferenta in zile
-		schedule_for_date = getScheduleForDate(date)
+		schedule_for_date = mySqlDBInterface.getScheduleForDate(date)
 		for task in schedule_for_date :
 			for hour in pandas.hour_range(task[2],task[3],freq="60min") :
 				#adica intre start hour si end hour
@@ -190,6 +190,7 @@ def addFromTasksToSchedule(tasks,schedule) :
 	tasks = removeFromListWhatHasNoDeadlineOrPriority(tasks)
 	# am scapat de taskurile neconforme
 	tasks = sortTasks(tasks)
+	# DEBUG: e ok pana aici
 	mySqlDBInterface.insertSortedTasksInSchedule(tasks,schedule)
 	return 0
 # analog addFromTimetableToSchedule
@@ -198,7 +199,7 @@ def initSchedule () :
 	mySqlDBInterface.deleteAllEntriesInTabel("schedule")
 	[tasks,timetable,schedule]=getFromDB()
 	# DEBUG:pana aici functioneaza perfect
-	addFromTimetableToSchedule(timetable)
+	addFromTimetableToSchedule(timetable,schedule)
 	[tasks,timetable,schedule]=getFromDB()
 	addFromTasksToSchedule(tasks,schedule)
 

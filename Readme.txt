@@ -70,6 +70,7 @@ sa o poti distruge si reconstrui din celelalte functii.
 *fa reschedule button, ca dureaza prea mult de fiecare data
 *fa totul (ne)resizable si adauga scrollbar
 *optimizari. neaparat!
+*modifica readmeul in md pe github
 
 STEPS:
 # TO DO: I.INITIALIZAREA SCHEDULERULUI
