@@ -168,13 +168,14 @@ def mapFreeHours() :
 		if len(horizontal_index)>2 :
 			horizontal_index = '0'
 		horizontal_index = int(horizontal_index)
-		print horizontal_index
 		# DEBUG: horizontal_index este ok, itereaza intre 0 si 90
 		#am extras diferenta in zile
+		date = str(date)[0:10]
+		# am convertit in formatul cerut de getScheduleForDate
 		schedule_for_date = mySqlDBInterface.getScheduleForDate(date)
-		# print schedule_for_date
-		# DEBUG: AICI AM O PROBLEMA! NU SE AFISEAZA NIMIC
+		# DEBUG: schedule_for_date este ok, dar e tuple of tuples
 		for task in schedule_for_date :
+			# DEBUG: e ok, imi intra doar in zilele unde am ceva schedulat
 			for hour in pandas.hour_range(task[2],task[3],freq="60min") :
 				#adica intre start hour si end hour
 				vertical_index = str(hour)[0:2]
