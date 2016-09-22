@@ -158,13 +158,22 @@ def mapFreeHours() :
 	free_hours = [list] * 90
 	for day in free_hours :
 		day = [True] * 24
+	#DEBUG: pana aici merge. am o lista de 90 de liste de
+	#		24 de Trueuri
 	# initial toate orele din fiecare zi din free_hours
 	# sunt libere
 	for date in pandas.date_range(current_date,end_date) :
-		horizontal_index = str(date - current_date)[0:1]
+		#DEBUG: date itereaza cum trebuie
+		horizontal_index = str(date - current_date).split(' ',1)[0]
+		if len(horizontal_index)>2 :
+			horizontal_index = '0'
 		horizontal_index = int(horizontal_index)
+		print horizontal_index
+		# DEBUG: horizontal_index este ok, itereaza intre 0 si 90
 		#am extras diferenta in zile
 		schedule_for_date = mySqlDBInterface.getScheduleForDate(date)
+		# print schedule_for_date
+		# DEBUG: AICI AM O PROBLEMA! NU SE AFISEAZA NIMIC
 		for task in schedule_for_date :
 			for hour in pandas.hour_range(task[2],task[3],freq="60min") :
 				#adica intre start hour si end hour
@@ -200,6 +209,7 @@ def initSchedule () :
 	[tasks,timetable,schedule]=getFromDB()
 	# DEBUG:pana aici functioneaza perfect
 	addFromTimetableToSchedule(timetable,schedule)
+	# DEBUG:pana aici functioneaza perfect
 	[tasks,timetable,schedule]=getFromDB()
 	addFromTasksToSchedule(tasks,schedule)
 

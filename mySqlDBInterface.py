@@ -2,6 +2,7 @@
 
 import MySQLdb
 import scheduler
+import datetime
 
 def getTasksFromDB():
 	#Aceasta functie imi returneaza taskurile
@@ -71,7 +72,7 @@ def getScheduleForDate(date):
 		WHERE DATE='%s'"""%date)
 	# CE HAL DE SINTAXA! keep this one in mind
 	# HOW THE FUCK IS IT EVEN POSSIBLE TO WORK?!
-	print "Debug 3.2"
+	# print "Debug 3.2"
 	schedule = cursor.fetchall()
 	db.close()
 	return schedule
@@ -302,22 +303,51 @@ def addTaskToScheduleForDayWeek(date,day_week) :
 # pe acea zi (pe ziua day_week) din saptamana
 
 def insertSortedTasksInSchedule(tasks,schedule) :
+	# primeste taskurile sortate si scheduleul actual
 	db = MySQLdb.connect("localhost","root","ionita",
 		"studentorganizer")
 	cursor = db.cursor()
 	free_hours = scheduler.mapFreeHours()
+	ID = len(schedule) + 1 #IDul de introdus pentru fiecare task
 	for task in tasks :
+		# print task
 		for day in schedule :
 			for hour in day :
 				if hour == True :
+					ID = str(ID)
+					date = str(day[1])
+					start_hour = str(hour)
+					end_hour = str(hour + 1)
+					name = str(task[1])
+					postpone = '0'
 					cursor.execute("""INSERT INTO schedule
-									VALUES ('%s','%s','%s','%s','%s')"""
-									%())
-					free_hours[day][hour] = False
+									VALUES ('%s','%s','%s','%s','%s','%s')"""
+									%(ID,date,start_hour,end_hour,
+										name,postpone) )
+					horizontal_index = abs(day[1]-datetime.datetime.now().date()).days
+					#print horizontal_index
+					#print type(horizontal_index)
+					#print type(hour)
+					#print "DEBUG1"
+					#print free_hours[horizontal_index][hour]
+					# CE PULA MEA?
+					#print "DEBUG2"
+					free_hours[horizontal_index][hour] = False
+					#BUG: Porneste de unde porneste hindex si in cealalta
+					# functie?
+					#print "DEBUG3"
 					#BUG: DE AICI VOR APAREA DE MAI MULTE ORI
 					# IN SCHEDULE
 					task[3] -= 1
 					if task[3] == 0:
 						break
+			if task[3]==0 :
+				break
+		ID = int(ID) + 1
+	db.commit()
+	db.close
 	return 0
 	# mai intai mapez programul liber din schedule
+
+	# TO DO:preia fiecare element din task, pt introducere in schedule
+	# fiecare element trebuie convertit la string
