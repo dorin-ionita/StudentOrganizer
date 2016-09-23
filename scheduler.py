@@ -193,7 +193,6 @@ def mapFreeHours() :
 				free_hours[horizontal_index][vertical_index] = False
 				if hour == task[3]:
 					free_hours[horizontal_index][vertical_index] = True
-	print free_hours
 	return free_hours
 	# 1.pentru fiecare data din schedule
 	# 2.pentru fiecare task de la data respectiva

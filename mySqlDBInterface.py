@@ -308,6 +308,7 @@ def insertSortedTasksInSchedule(tasks,schedule) :
 		"studentorganizer")
 	cursor = db.cursor()
 	free_hours = scheduler.mapFreeHours()
+	#DEBUG: ok pana aici
 	ID = len(schedule) + 1 #IDul de introdus pentru fiecare task
 	for task in tasks :
 		# print task
@@ -325,19 +326,7 @@ def insertSortedTasksInSchedule(tasks,schedule) :
 									%(ID,date,start_hour,end_hour,
 										name,postpone) )
 					horizontal_index = abs(day[1]-datetime.datetime.now().date()).days
-					#print horizontal_index
-					#print type(horizontal_index)
-					#print type(hour)
-					#print "DEBUG1"
-					#print free_hours[horizontal_index][hour]
-					# CE PULA MEA?
-					#print "DEBUG2"
 					free_hours[horizontal_index][hour] = False
-					#BUG: Porneste de unde porneste hindex si in cealalta
-					# functie?
-					#print "DEBUG3"
-					#BUG: DE AICI VOR APAREA DE MAI MULTE ORI
-					# IN SCHEDULE
 					task[3] -= 1
 					if task[3] == 0:
 						break
