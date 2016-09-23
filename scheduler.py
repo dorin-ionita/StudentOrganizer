@@ -162,7 +162,6 @@ def mapFreeHours() :
 	for day in free_hours :
 		for i in range(24) :
 			day.append(CONSTANT_TRUE)
-	print free_hours
 	#DEBUG: pana aici merge. am o lista de 90 de liste de
 	#		24 de Trueuri
 	# initial toate orele din fiecare zi din free_hours
@@ -181,32 +180,20 @@ def mapFreeHours() :
 		# DEBUG: schedule_for_date este ok, dar e tuple of tuples
 		for task in schedule_for_date :
 			# DEBUG: e ok, imi intra doar in zilele unde am ceva schedulat
-			print task[2], task[3]
 			hour_range = []
 			hour = task [2]
-			print type(hour)
 			while hour<=task[3] :
-				print hour
 				hour_range.append(hour)
 				hour += timedelta(hours=1)
-			print hour_range
 			for hour in hour_range :
-				print "*****"
-				print hour
-				print "*****"
-				# BUG: no attribute hour_range
 				#adica intre start hour si end hour
-				vertical_index = str(hour)[0:2]
-				# dar daca am o ora doar dintr-o cifra?
+				vertical_index = str(hour).split(':',1)[0]
 				vertical_index = int(vertical_index)
-				print vertical_index
-				print horizontal_index
 				#vezi daca ai facut sliceul bine
-				print type(free_hours[horizontal_index][vertical_index])
 				free_hours[horizontal_index][vertical_index] = False
-				print "Am ajuns aici"
 				if hour == task[3]:
 					free_hours[horizontal_index][vertical_index] = True
+	print free_hours
 	return free_hours
 	# 1.pentru fiecare data din schedule
 	# 2.pentru fiecare task de la data respectiva
