@@ -155,9 +155,14 @@ def mapFreeHours() :
 	end_date = current_date + datetime.timedelta(days=90)
 	#acesta e indexul pe orizontala in lista
 	#pe verticala voi avea ora
-	free_hours = [list] * 90
+	free_hours = []
+	for i in range(91):
+		free_hours.append([True])
+	CONSTANT_TRUE = True
 	for day in free_hours :
-		day = [True] * 24
+		for i in range(24) :
+			day.append(CONSTANT_TRUE)
+	print free_hours
 	#DEBUG: pana aici merge. am o lista de 90 de liste de
 	#		24 de Trueuri
 	# initial toate orele din fiecare zi din free_hours
@@ -176,11 +181,30 @@ def mapFreeHours() :
 		# DEBUG: schedule_for_date este ok, dar e tuple of tuples
 		for task in schedule_for_date :
 			# DEBUG: e ok, imi intra doar in zilele unde am ceva schedulat
-			for hour in pandas.hour_range(task[2],task[3],freq="60min") :
+			print task[2], task[3]
+			hour_range = []
+			hour = task [2]
+			print type(hour)
+			while hour<=task[3] :
+				print hour
+				hour_range.append(hour)
+				hour += timedelta(hours=1)
+			print hour_range
+			for hour in hour_range :
+				print "*****"
+				print hour
+				print "*****"
+				# BUG: no attribute hour_range
 				#adica intre start hour si end hour
 				vertical_index = str(hour)[0:2]
+				# dar daca am o ora doar dintr-o cifra?
+				vertical_index = int(vertical_index)
+				print vertical_index
+				print horizontal_index
 				#vezi daca ai facut sliceul bine
+				print type(free_hours[horizontal_index][vertical_index])
 				free_hours[horizontal_index][vertical_index] = False
+				print "Am ajuns aici"
 				if hour == task[3]:
 					free_hours[horizontal_index][vertical_index] = True
 	return free_hours
