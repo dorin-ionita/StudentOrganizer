@@ -270,8 +270,11 @@ def addTaskToScheduleForDayWeek(date,day_week) :
 	tasks = cursor.fetchall()
 	#DEBUG: dayweek si tasks sunt ok
 	#E necesar sa aflu IDul pe care sa il adaug in BD:
-	cursor.execute("""SELECT * FROM schedule""")
-	ID_to_add_in_schedule = len(cursor.fetchall()) + 1
+	cursor.execute("""SELECT COUNT(ID) FROM schedule""")
+	length=str(cursor.fetchall()).split('L',1)[0][2:]
+	length=int(length)
+	ID_to_add_in_schedule = length + 1
+	# print ID_to_add_in_schedule
 	#DEBUG: ID_to_add_in_schedule is ok
 	for task in tasks :
 		# IDul nu ramane acelasi
@@ -285,13 +288,13 @@ def addTaskToScheduleForDayWeek(date,day_week) :
 		date_parity = str(date_parity)
 		# pentru a putea sa compar paritatile
 		# print task #ce pula mea?
-		if parity==date_parity or parity==2 :
+		if parity==date_parity or parity=='2' :
 			#DEBUG: intra calumea in if (nu am testat parity==2)
 			cursor.execute("""INSERT INTO schedule
 							VALUES ('%d','%s','%s','%s','%s','0')"""
 							%(ID_to_add_in_schedule,date,start_hour,
 								end_hour,name))
-		ID_to_add_in_schedule += 1
+			ID_to_add_in_schedule += 1
 	db.commit()
 	db.close
 	return 0
@@ -304,6 +307,9 @@ def addTaskToScheduleForDayWeek(date,day_week) :
 
 def insertSortedTasksInSchedule(tasks,schedule) :
 	# primeste taskurile sortate si scheduleul actual
+	# print tasks
+	# print "0000"
+	# print schedule
 	db = MySQLdb.connect("localhost","root","ionita",
 		"studentorganizer")
 	cursor = db.cursor()
@@ -313,7 +319,7 @@ def insertSortedTasksInSchedule(tasks,schedule) :
 	for task in tasks :
 		# print task
 		for day in schedule :
-			for hour in day :
+			for hour in day :  ## AICII NU E BINEEEE!
 				if hour == True :
 					ID = str(ID)
 					date = str(day[1])
@@ -340,3 +346,5 @@ def insertSortedTasksInSchedule(tasks,schedule) :
 
 	# TO DO:preia fiecare element din task, pt introducere in schedule
 	# fiecare element trebuie convertit la string
+# pentru fiecare task de adaugat parcurg scheduleul
+# si pentru fiecare zi (fiecare task din schedule)

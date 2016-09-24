@@ -220,9 +220,9 @@ def initSchedule () :
 	[tasks,timetable,schedule]=getFromDB()
 	# DEBUG:pana aici functioneaza perfect
 	addFromTimetableToSchedule(timetable,schedule)
-	# DEBUG:pana aici functioneaza perfect
-	[tasks,timetable,schedule]=getFromDB()
-	addFromTasksToSchedule(tasks,schedule)
+	# DEBUG:schedule aint ok
+	# [tasks,timetable,schedule]=getFromDB()
+	# addFromTasksToSchedule(tasks,schedule)
 
 
 	# e nevoie sa recitesc pt ca s-a modificat schedule
@@ -232,8 +232,3 @@ def initSchedule () :
 	# schedule = addFromTasksToSchedule(tasks,schedule)			#TO DO
 	return 0
 # imi creeeaza scheduleul, pe baza Timetable si Tasks
-
-
-#OTHER THINGS I LEARNED:
-	# for hour in pandas.hour_range("00:00","24:00",freq="60min")
-

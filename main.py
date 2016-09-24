@@ -25,6 +25,7 @@ current_date_raw = datetime.datetime.now()
 #este de tip datetime.datetime
 current_date_string=str(current_date_raw)[0:10]
 #am obtinut data de care am nevoie
+#DEBUG: pana aici este ok
 
 scheduler.initSchedule()
 #am initiat schedule

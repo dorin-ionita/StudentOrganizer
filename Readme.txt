@@ -72,6 +72,7 @@ sa o poti distruge si reconstrui din celelalte functii.
 *optimizari. neaparat!
 *modifica readmeul in md pe github
 *fa coding style conform normelor
+*MUST: o singura deschidere de baza de date/o singura data acces, ca moare!
 
 STEPS:
 # TO DO: I.INITIALIZAREA SCHEDULERULUI
