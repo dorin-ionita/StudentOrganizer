@@ -74,6 +74,8 @@ sa o poti distruge si reconstrui din celelalte functii.
 *fa coding style conform normelor
 *MUST: o singura deschidere de baza de date/o singura data acces, ca moare!
 
+****** adauga manager note, si mai ales si cu bonus, cat esti pe plus, cat pe minus fata de target, de exemplu
+
 STEPS:
 # TO DO: I.INITIALIZAREA SCHEDULERULUI
 #		 	1.in primul rand se citesc tasks si timetable 					[x]
